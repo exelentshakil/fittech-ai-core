@@ -32,12 +32,11 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
     // 2. Three.js Scene Setup
     const scene = new THREE.Scene();
     
-    // Orthographic / Perspective balance for Stripe ribbon depth
-    const width = container.clientWidth || 600;
-    const height = container.clientHeight || 500;
+    const width = container.clientWidth || 700;
+    const height = container.clientHeight || 580;
     
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 5);
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 0, 4.8);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -48,9 +47,8 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // 3. Custom Iridescent Ribbon Geometry
-    // 120 segments along X, 40 segments along Y for ultra-smooth fluid curves
-    const geometry = new THREE.PlaneGeometry(7.5, 4.5, 120, 40);
+    // 3. Custom Iridescent Ribbon Geometry: 140x50 mesh for organic fluid folds
+    const geometry = new THREE.PlaneGeometry(8.2, 5.0, 140, 50);
 
     // 4. Custom GLSL Shader for Authentic Stripe Iridescent Wave
     const waveUniforms = {
@@ -81,15 +79,14 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
           vec3 pos = position;
 
           // Harmonic multi-frequency fluid wave deformation (Stripe 3D ribbon effect)
-          float wave1 = sin(pos.x * 1.8 + uTime * 0.95) * 0.45;
-          float wave2 = cos(pos.y * 2.2 + uTime * 0.8) * 0.35;
-          float wave3 = sin((pos.x + pos.y) * 1.5 + uTime * 1.2) * 0.25;
-          float mouseInteraction = sin(distance(uv, uMouse) * 6.28 - uTime) * 0.12;
+          float wave1 = sin(pos.x * 1.6 + uTime * 0.92) * 0.52;
+          float wave2 = cos(pos.y * 2.0 + uTime * 0.78) * 0.38;
+          float wave3 = sin((pos.x + pos.y) * 1.4 + uTime * 1.15) * 0.28;
+          float mouseDist = distance(uv, uMouse);
+          float mouseInteraction = sin(mouseDist * 5.0 - uTime * 1.5) * 0.16 * smoothstep(0.8, 0.0, mouseDist);
 
           pos.z += wave1 + wave2 + wave3 + mouseInteraction;
-          
-          // Gentle S-curve ribbon twist
-          pos.y += sin(pos.x * 0.8 + uTime * 0.4) * 0.25;
+          pos.y += sin(pos.x * 0.75 + uTime * 0.35) * 0.28;
 
           vElevation = pos.z;
           vNormalVec = normal;
@@ -109,10 +106,8 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
 
         void main() {
           // Dynamic iridescent color blending across UV coordinates and wave heights
-          float normElevation = (vElevation + 0.8) * 0.6;
-          
-          // Diagonal color gradient flow
-          float t = clamp(vUv.x * 0.7 + vUv.y * 0.3 + normElevation * 0.4, 0.0, 1.0);
+          float normElevation = (vElevation + 0.9) * 0.55;
+          float t = clamp(vUv.x * 0.65 + vUv.y * 0.35 + normElevation * 0.35, 0.0, 1.0);
 
           vec3 color = uColor1;
           if (t < 0.25) {
@@ -126,15 +121,15 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
           }
 
           // Ambient luminous edge highlight (Stripe silk shine)
-          float fresnel = 0.4 + 0.6 * pow(1.0 - abs(vElevation * 0.8), 2.0);
+          float fresnel = 0.55 + 0.45 * pow(1.0 - abs(vElevation * 0.65), 1.8);
           color *= fresnel;
 
-          // Soft organic feathering on borders for seamless blend into canvas
-          float edgeAlpha = smoothstep(0.0, 0.15, vUv.x) * smoothstep(1.0, 0.85, vUv.x) *
-                           smoothstep(0.0, 0.15, vUv.y) * smoothstep(1.0, 0.85, vUv.y);
+          // Soft organic feathering on borders for seamless blend
+          float edgeAlpha = smoothstep(0.0, 0.10, vUv.x) * smoothstep(1.0, 0.90, vUv.x) *
+                           smoothstep(0.0, 0.10, vUv.y) * smoothstep(1.0, 0.90, vUv.y);
 
-          // Alpha curve: vibrant opacity in core, soft fade out at boundary
-          float finalAlpha = clamp(0.75 * edgeAlpha * (0.8 + normElevation * 0.3), 0.0, 0.92);
+          // Alpha curve: high vibrancy in core ribbon, soft fade out at perimeter
+          float finalAlpha = clamp(0.92 * edgeAlpha * (0.88 + normElevation * 0.2), 0.0, 0.98);
 
           gl_FragColor = vec4(color, finalAlpha);
         }
@@ -142,9 +137,9 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
     });
 
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = -0.35;
-    mesh.rotation.y = 0.25;
-    mesh.rotation.z = -0.15;
+    mesh.rotation.x = -0.32;
+    mesh.rotation.y = 0.22;
+    mesh.rotation.z = -0.14;
     scene.add(mesh);
 
     // 5. Mouse tracking with smooth lerp
@@ -185,13 +180,9 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
       if (!isVisible || document.hidden) return;
 
       const delta = clock.getDelta();
-      waveUniforms.uTime.value += delta * 0.85;
-
-      // Smooth mouse lerp
+      waveUniforms.uTime.value += delta * 0.88;
       waveUniforms.uMouse.value.lerp(targetMouse, 0.05);
-
-      // Subtle ambient mesh tilt
-      mesh.rotation.z = -0.15 + Math.sin(waveUniforms.uTime.value * 0.3) * 0.05;
+      mesh.rotation.z = -0.14 + Math.sin(waveUniforms.uTime.value * 0.3) * 0.04;
 
       renderer.render(scene, camera);
     };
@@ -219,27 +210,27 @@ export function StripeWaveCanvas({ className = '' }: StripeWaveCanvasProps) {
       {/* Layer 1: Instant CSS/SVG Iridescent Mesh Fallback (Zero CLS, Frame 0 Paint) */}
       <div
         className={`absolute inset-0 transition-opacity duration-1000 ${
-          isLoaded ? 'opacity-20' : 'opacity-100'
+          isLoaded ? 'opacity-30' : 'opacity-100'
         }`}
       >
-        <div className="absolute -top-12 -right-12 w-[120%] h-[120%] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#FF2E93]/25 via-[#533AFD]/20 to-[#00D4FF]/10 blur-3xl" />
+        <div className="absolute -top-10 -right-10 w-[130%] h-[130%] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#FF2E93]/40 via-[#533AFD]/35 to-[#00D4FF]/25 blur-3xl" />
         <svg
-          className="absolute right-0 top-0 w-full h-full opacity-60 mix-blend-screen"
+          className="absolute right-0 top-0 w-full h-full opacity-90 mix-blend-multiply dark:mix-blend-screen"
           viewBox="0 0 800 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M200,100 C350,150 450,50 650,180 C850,310 700,550 500,480 C300,410 100,520 50,300 Z"
+            d="M80,90 C260,130 420,30 620,150 C820,270 760,560 520,490 C280,420 70,510 30,270 Z"
             fill="url(#stripeMeshFallback)"
           />
           <defs>
             <linearGradient id="stripeMeshFallback" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#533AFD" stopOpacity="0.7" />
-              <stop offset="30%" stopColor="#FF2E93" stopOpacity="0.65" />
-              <stop offset="60%" stopColor="#FF7A59" stopOpacity="0.6" />
-              <stop offset="85%" stopColor="#00D4FF" stopOpacity="0.55" />
-              <stop offset="100%" stopColor="#7A68FF" stopOpacity="0.7" />
+              <stop offset="0%" stopColor="#533AFD" stopOpacity="0.85" />
+              <stop offset="28%" stopColor="#FF2E93" stopOpacity="0.82" />
+              <stop offset="58%" stopColor="#FF7A59" stopOpacity="0.78" />
+              <stop offset="82%" stopColor="#00D4FF" stopOpacity="0.75" />
+              <stop offset="100%" stopColor="#7A68FF" stopOpacity="0.85" />
             </linearGradient>
           </defs>
         </svg>

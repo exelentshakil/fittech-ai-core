@@ -24,7 +24,7 @@ const FEATURES: FeatureItem[] = [
     id: 'services',
     icon: LayoutGrid,
     title: 'Professional services.',
-    description: 'Get tailored architectural guidance from senior systems engineers on WhatsApp Cloud API setup, WooCommerce webhooks, and Hebrew RTL NLP tuning.',
+    description: 'Get tailored architectural guidance from senior systems engineers on Cloudflare Stream CDN, Replit backend stabilization, and Apple StoreKit 2 integration.',
     linkText: 'View services & workflow',
     action: 'pipeline',
   },
@@ -40,7 +40,7 @@ const FEATURES: FeatureItem[] = [
     id: 'retainers',
     icon: MessageSquare,
     title: 'Support & retainers.',
-    description: 'Receive ongoing operational support, Inngest background queue monitoring, automated abandoned cart retries, and strict SLA response tracking.',
+    description: 'Receive ongoing operational monitoring, Inngest background event queues, automated workout generation failover, and strict 99.999% SLA response tracking.',
     linkText: 'View execution logs & SLA',
     action: 'logs',
   },
@@ -76,7 +76,7 @@ export function StripeFeatureGrid({
           <h2 className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-[var(--color-text-primary)]">
             Powering businesses of all sizes.{' '}
             <span className="text-[var(--color-text-secondary)] opacity-75 font-normal">
-              Run your WhatsApp operations on a reliable architecture that adapts to your store.
+              Scale your mobile backend on a battle-tested architecture that adapts to your growth.
             </span>
           </h2>
         </div>

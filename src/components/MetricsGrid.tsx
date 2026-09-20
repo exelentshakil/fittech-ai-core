@@ -36,17 +36,17 @@ const latencyTrend = [
   { t: '18:00', v: 18 },
 ];
 
-const nlpPrecisionData = [
-  { domain: 'Sizes', v: 98.6 },
-  { domain: 'Stock', v: 99.2 },
-  { domain: 'Shipping', v: 99.5 },
-  { domain: 'Tracking', v: 99.8 },
-  { domain: 'Returns', v: 99.1 },
-  { domain: 'Catalog', v: 99.7 },
-  { domain: 'RTL NLP', v: 99.4 },
+const workoutPrecisionData = [
+  { domain: 'Form Rules', v: 98.6 },
+  { domain: 'Rep Cadence', v: 99.2 },
+  { domain: 'Heart Zones', v: 99.5 },
+  { domain: 'Progression', v: 99.8 },
+  { domain: 'Deload Bias', v: 99.1 },
+  { domain: 'Recovery', v: 99.7 },
+  { domain: 'Safety SLA', v: 99.9 },
 ];
 
-const cartRecoveryData = [
+const subscriptionSyncVelocity = [
   { day: 'Mon', v: 8.4 },
   { day: 'Tue', v: 11.2 },
   { day: 'Wed', v: 13.9 },
@@ -56,14 +56,14 @@ const cartRecoveryData = [
   { day: 'Sun', v: 21.8 },
 ];
 
-const ownershipUptimeData = [
-  { node: 'WABA API', v: 100 },
-  { node: 'Phone DID', v: 100 },
-  { node: 'Woo Sync', v: 100 },
-  { node: 'Webhook', v: 100 },
-  { node: 'AI Router', v: 100 },
-  { node: 'Escalation', v: 100 },
-  { node: 'Meta Owner', v: 100 },
+const subsystemUptimeData = [
+  { node: 'Video CDN', v: 100 },
+  { node: 'StoreKit 2', v: 100 },
+  { node: 'OpenAI GPT-4o', v: 100 },
+  { node: 'Gemini Failover', v: 100 },
+  { node: 'Inngest DLQ', v: 100 },
+  { node: 'PgBouncer Pool', v: 100 },
+  { node: 'Gym Admin RBAC', v: 100 },
 ];
 
 const telemetryStream = [
@@ -141,10 +141,10 @@ export function MetricsGrid() {
     }
 
     if (idx === 1) {
-      // Card 1: Hebrew NLP precision breakdown (Sleek thin progressive emerald bars)
+      // Card 1: AI Workout Synthesis Precision (Sleek thin progressive emerald bars)
       return (
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={nlpPrecisionData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }} barCategoryGap={4}>
+          <BarChart data={workoutPrecisionData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }} barCategoryGap={4}>
             <Tooltip
               content={({ active, payload }) => {
                 if (active && payload && payload.length) {
@@ -159,11 +159,11 @@ export function MetricsGrid() {
               }}
             />
             <Bar dataKey="v" radius={[2, 2, 0, 0]} barSize={9}>
-              {nlpPrecisionData.map((_, barIdx) => (
+              {workoutPrecisionData.map((_, barIdx) => (
                 <Cell
                   key={`cell-${barIdx}`}
                   fill="#057A55"
-                  fillOpacity={0.45 + (barIdx / nlpPrecisionData.length) * 0.55}
+                  fillOpacity={0.45 + (barIdx / workoutPrecisionData.length) * 0.55}
                 />
               ))}
             </Bar>
@@ -173,10 +173,10 @@ export function MetricsGrid() {
     }
 
     if (idx === 2) {
-      // Card 2: Abandoned cart recovery velocity (Upward compounding amber/teal stepped curve)
+      // Card 2: Apple StoreKit 2 JWS Reconciliations (Compounding amber stepped curve)
       return (
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={cartRecoveryData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
+          <AreaChart data={subscriptionSyncVelocity} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
             <defs>
               <linearGradient id="recoveryGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#D97706" stopOpacity={0.28} />
@@ -189,7 +189,7 @@ export function MetricsGrid() {
                   const data = payload[0].payload;
                   return (
                     <div className="rounded-[4px] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 text-[10px] font-mono shadow-xs text-[var(--color-text-primary)]">
-                      {data.day}: <span className="font-bold text-amber-600 dark:text-amber-400">+{data.v}%</span> orders
+                      {data.day}: <span className="font-bold text-amber-600 dark:text-amber-400">+{data.v}%</span> IAP Sync
                     </div>
                   );
                 }
@@ -208,10 +208,10 @@ export function MetricsGrid() {
       );
     }
 
-    // Card 3: 100% Client Asset Ownership & WABA delivery stability line
+    // Card 3: 100% Subsystem Health & Edge Reliability
     return (
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={ownershipUptimeData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
+        <AreaChart data={subsystemUptimeData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
           <defs>
             <linearGradient id="ownershipGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#0d9488" stopOpacity={0.28} />
@@ -305,7 +305,7 @@ export function MetricsGrid() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold tracking-tight text-[var(--color-text-primary)]">
-                Telemetry & Throughput Engine
+                Telemetry &amp; Throughput Engine
               </span>
               <span className="rounded-[4px] bg-[#533AFD]/8 text-[#533AFD] border border-[#533AFD]/20 dark:bg-[#7A68FF]/15 dark:text-[#7A68FF] dark:border-[#7A68FF]/30 px-2 py-0.5 text-[10px] font-mono font-semibold">
                 Live Stream
