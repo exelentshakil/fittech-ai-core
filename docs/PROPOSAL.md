@@ -16,4 +16,4 @@ which database are you currently pairing with your replit backend (supabase, pos
 happy to hop on a quick 10-minute call to walk through the architecture.
 
 best,
-Shaq
+Shak

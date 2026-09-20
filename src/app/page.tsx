@@ -3,10 +3,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/Header';
 import { StripeHero } from '@/components/StripeHero';
+import { StripeInteractiveShowcase } from '@/components/StripeInteractiveShowcase';
 import { BackboneStats } from '@/components/BackboneStats';
 import { StripeFeatureGrid } from '@/components/StripeFeatureGrid';
 import { MetricsGrid } from '@/components/MetricsGrid';
 import { HeroWorkflowEngine } from '@/components/HeroWorkflowEngine';
+import { EnterpriseMediaShowcase } from '@/components/EnterpriseMediaShowcase';
 import { DataTableSection } from '@/components/DataTableSection';
 import { ChaosSimulatorModal } from '@/components/ChaosSimulatorModal';
 import { AiGovernanceDrawer } from '@/components/AiGovernanceDrawer';
@@ -102,14 +104,17 @@ export default function HomePage() {
         onOpenCommandMenu={() => setCommandMenuOpen(true)}
       />
 
-      {/* Stripe Authentic Hero Section */}
+      {/* Stripe Authentic Hero Section with 3D WebGL Iridescent Ribbon Canvas */}
       <StripeHero onExplore={() => handleNavigate('pipeline')} />
+
+      {/* Stripe Section 2 Standard: 6-Card Interactive Moving Elements Grid & Architecture Map */}
+      <StripeInteractiveShowcase />
 
       {/* Stripe 4-Column Backbone Stats Strip */}
       <BackboneStats />
 
       <main className="w-full max-w-full min-w-0 overflow-x-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-16">
           {/* Section 1: Cockpit Telemetry & KPI Grid */}
           <section id="cockpit" className="scroll-mt-20">
             <div className="mb-4">
@@ -136,7 +141,10 @@ export default function HomePage() {
             <HeroWorkflowEngine />
           </section>
 
-          {/* Section 3: Stripe 3-Column Feature Cards */}
+          {/* Section 3: Enterprise Media & Case Studies (Pexels API Video & Photography Showcase) */}
+          <EnterpriseMediaShowcase />
+
+          {/* Section 4: Stripe 3-Column Feature Cards */}
           <StripeFeatureGrid
             onOpenGovernance={() => setGovernanceDrawerOpen(true)}
             onOpenPipeline={() => handleNavigate('pipeline')}
@@ -149,7 +157,7 @@ export default function HomePage() {
             }}
           />
 
-          {/* Section 4: Entity Data Grid & Slide-out Inspection Sheet */}
+          {/* Section 5: Entity Data Grid & Slide-out Inspection Sheet */}
           <section id="records" className="scroll-mt-20">
             <DataTableSection />
           </section>

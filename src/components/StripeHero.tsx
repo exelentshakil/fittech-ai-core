@@ -4,17 +4,23 @@ import React from 'react';
 import { ChevronRight, ArrowRight, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
+import { StripeWaveCanvas } from '@/components/StripeWaveCanvas';
 
 export function StripeHero({ onExplore }: { onExplore?: () => void }) {
   return (
-    <section className="relative overflow-hidden pt-6 pb-10 sm:pt-10 sm:pb-16">
+    <section className="relative overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-20">
+      {/* Stripe Authentic 3D WebGL Iridescent Wave Ribbon Canvas (Exact Stripe Architecture) */}
+      <div className="pointer-events-none absolute -top-12 right-0 -z-10 w-[340px] sm:w-[520px] lg:w-[720px] h-[450px] sm:h-[600px] lg:h-[720px] opacity-95">
+        <StripeWaveCanvas />
+      </div>
+
       {/* Stripe Authentic Ambient Aura / Mesh Glow */}
-      <div className="pointer-events-none absolute -top-24 right-0 -z-10 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-[#533AFD]/12 via-[#FF7A59]/10 to-transparent blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 -left-20 -z-10 h-[380px] w-[380px] rounded-full bg-gradient-to-tr from-[#FFE0EF]/30 via-[#00D924]/10 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 right-0 -z-20 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-[#533AFD]/15 via-[#FF7A59]/10 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 -left-20 -z-20 h-[380px] w-[380px] rounded-full bg-gradient-to-tr from-[#FFE0EF]/30 via-[#00D924]/10 to-transparent blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Live Telemetry Eyebrow */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs font-mono text-[var(--color-text-secondary)] shadow-2xs mb-6">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs font-mono text-[var(--color-text-secondary)] shadow-2xs mb-6 backdrop-blur-sm">
           <span className="h-1.5 w-1.5 rounded-full bg-[#00D924] animate-pulse" />
           <span className="font-semibold text-[var(--color-text-primary)]">Enterprise Availability:</span>
           <span>99.999% Historical Uptime</span>
@@ -35,7 +41,7 @@ export function StripeHero({ onExplore }: { onExplore?: () => void }) {
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Button
             onClick={onExplore}
-            className="h-10 px-5 text-sm font-semibold bg-[#533AFD] hover:bg-[#432DE0] text-white shadow-2xs rounded-[4px] transition-all"
+            className="h-10 px-5 text-sm font-semibold bg-[#533AFD] hover:bg-[#432DE0] text-white shadow-2xs rounded-[4px] transition-all cursor-pointer"
           >
             Launch interactive cockpit
             <ChevronRight className="h-4 w-4 ml-1" />
@@ -44,7 +50,7 @@ export function StripeHero({ onExplore }: { onExplore?: () => void }) {
           <Button
             variant="outline"
             onClick={onExplore}
-            className="h-10 px-5 text-sm font-semibold border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] rounded-[4px] shadow-2xs"
+            className="h-10 px-5 text-sm font-semibold border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] rounded-[4px] shadow-2xs cursor-pointer"
           >
             Explore API & schemas
             <ChevronRight className="h-4 w-4 ml-1 text-[var(--color-text-muted)]" />
