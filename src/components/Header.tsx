@@ -64,7 +64,13 @@ export function Header({
     <header className="sticky top-0 z-40 w-full border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 gap-2 sm:gap-4">
         {/* Left: Brand Identity & Version Badge */}
-        <div className="flex items-center gap-2.5 min-w-0 shrink-0">
+        <div
+          onClick={() => onNavigate("hero")}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && onNavigate("hero")}
+          className="flex items-center gap-2.5 min-w-0 shrink-0 cursor-pointer select-none"
+        >
           <div className="flex h-8 w-8 items-center justify-center rounded-[6px] bg-gradient-to-br from-[#533AFD] via-[#432DE0] to-[#0D1738] text-white shadow-xs font-bold shrink-0 border border-white/20">
             <Bot className="h-4 w-4" />
           </div>

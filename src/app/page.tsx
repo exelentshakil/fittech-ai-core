@@ -35,7 +35,7 @@ export default function HomePage() {
       clearTimeout(navTimeoutRef.current);
     }
 
-    if (sectionId === 'cockpit') {
+    if (sectionId === 'hero' || sectionId === 'top') {
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -105,7 +105,7 @@ export default function HomePage() {
       />
 
       {/* Stripe Authentic Hero Section with 3D WebGL Iridescent Ribbon Canvas */}
-      <StripeHero onExplore={() => handleNavigate('pipeline')} />
+      <StripeHero onLaunchCockpit={() => handleNavigate('cockpit')} onExploreSchemas={() => handleNavigate('pipeline')} />
 
       {/* Stripe Section 2 Standard: 6-Card Interactive Moving Elements Grid & Architecture Map */}
       <StripeInteractiveShowcase />

@@ -16,7 +16,15 @@ import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 import { StripeWaveCanvas } from '@/components/StripeWaveCanvas';
 
-export function StripeHero({ onExplore }: { onExplore?: () => void }) {
+export function StripeHero({
+  onLaunchCockpit,
+  onExploreSchemas,
+  onExplore,
+}: {
+  onLaunchCockpit?: () => void;
+  onExploreSchemas?: () => void;
+  onExplore?: () => void;
+}) {
   const [streamSimulating, setStreamSimulating] = useState(false);
   const [simulatedChunks, setSimulatedChunks] = useState(14);
 
@@ -72,7 +80,7 @@ export function StripeHero({ onExplore }: { onExplore?: () => void }) {
             {/* Stripe Authentic 4px Radius Button Suite */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Button
-                onClick={onExplore}
+                onClick={onLaunchCockpit || onExplore}
                 className="h-10 px-5 text-sm font-semibold bg-[#533AFD] hover:bg-[#432DE0] text-white shadow-2xs rounded-[4px] transition-all cursor-pointer"
               >
                 Launch interactive cockpit
@@ -81,7 +89,7 @@ export function StripeHero({ onExplore }: { onExplore?: () => void }) {
 
               <Button
                 variant="outline"
-                onClick={onExplore}
+                onClick={onExploreSchemas || onExplore}
                 className="h-10 px-5 text-sm font-semibold border-[var(--color-border)] bg-[var(--color-surface)]/90 hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] rounded-[4px] shadow-2xs cursor-pointer backdrop-blur-xs"
               >
                 Explore API &amp; schemas
