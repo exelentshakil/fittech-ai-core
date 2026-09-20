@@ -78,9 +78,9 @@ export function EnterpriseMediaShowcase() {
             <div className="flex items-center justify-between">
               <div className="inline-flex items-center gap-2 rounded-full bg-black/75 backdrop-blur-md px-3.5 py-1.5 text-xs font-mono text-white border border-white/20 shadow-lg">
                 <span className="h-2 w-2 rounded-full bg-[#00D924] animate-pulse" />
-                <span className="font-semibold tracking-wide">Live High-Throughput Node</span>
+                <span className="font-semibold tracking-wide" style={{ color: '#ffffff' }}>Live High-Throughput Node</span>
                 <span className="text-white/40">|</span>
-                <span className="text-slate-300">Edge PoP #904</span>
+                <span className="text-slate-300" style={{ color: '#CBD5E1' }}>Edge PoP #904</span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -90,7 +90,7 @@ export function EnterpriseMediaShowcase() {
                   aria-label={isPlaying ? "Pause ambient video" : "Play ambient video"}
                   className="p-2.5 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md text-white transition-all border border-white/20 shadow-md cursor-pointer"
                 >
-                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  {isPlaying ? <Pause className="w-4 h-4 text-white" /> : <Play className="w-4 h-4 text-white" />}
                 </button>
                 <button
                   type="button"
@@ -98,21 +98,30 @@ export function EnterpriseMediaShowcase() {
                   aria-label={isMuted ? "Unmute video" : "Mute video"}
                   className="p-2.5 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md text-white transition-all border border-white/20 shadow-md cursor-pointer"
                 >
-                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  {isMuted ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-white" />}
                 </button>
               </div>
             </div>
 
             {/* Bottom Copy: High-Contrast Dark Card Scrim for Pristine Contrast */}
-            <div className="max-w-2xl rounded-xl bg-black/80 backdrop-blur-md border border-white/15 p-6 sm:p-7 shadow-2xl space-y-3">
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#00D4FF] font-bold">
+            <div className="max-w-2xl rounded-xl bg-black/85 backdrop-blur-md border border-white/20 p-6 sm:p-7 shadow-2xl space-y-3">
+              <div
+                style={{ color: '#00D4FF' }}
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider !text-[#00D4FF] font-bold"
+              >
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
                 Autonomous Execution Engine
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-extrabold tracking-tight text-white leading-tight drop-shadow-sm">
+              <h2
+                style={{ color: '#ffffff' }}
+                className="text-2xl sm:text-3xl lg:text-[32px] font-extrabold tracking-tight !text-white leading-tight drop-shadow-sm"
+              >
                 Building the economic &amp; operational infrastructure for {siteConfig.name}.
               </h2>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+              <p
+                style={{ color: '#E2E8F0' }}
+                className="text-xs sm:text-sm !text-slate-200 leading-relaxed font-normal"
+              >
                 Cryptographically verifiable event streams, deterministic fallbacks, and real-time sub-50ms data pipelines running at production scale.
               </p>
             </div>

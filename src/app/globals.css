@@ -135,24 +135,27 @@
   --font-mono: 'Sohne Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-body {
-  font-family: 'sohne-var', 'Sohne', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: var(--color-text-primary);
-  background-color: var(--color-canvas);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    font-family: 'sohne-var', 'Sohne', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'sohne-var', 'Sohne', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    font-weight: 700;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'Sohne Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  }
 }
 
-h1, h2, h3, h4, .font-heading {
-  font-family: 'sohne-var', 'Sohne', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-  letter-spacing: -0.02em;
-  color: var(--color-text-primary);
-  font-weight: 700;
-}
-
-code, kbd, samp, pre, .font-mono {
-  font-family: 'Sohne Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
-}
 :root {
   --stripe-blurple: #533AFD;
   --stripe-blurple-hover: #432DE0;

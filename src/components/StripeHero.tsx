@@ -37,19 +37,19 @@ export function StripeHero({ onExplore }: { onExplore?: () => void }) {
 
   return (
     <section className="relative isolate overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-20">
-      {/* Stripe Authentic 3D WebGL Iridescent Wave Ribbon Canvas (Fills Right-Side Background) */}
-      <div className="pointer-events-none absolute -top-8 right-0 -z-10 w-full lg:w-[65%] xl:w-[60%] h-[480px] sm:h-[600px] lg:h-[700px] opacity-100 overflow-hidden">
+      {/* Stripe Authentic 3D WebGL Iridescent Wave Ribbon Canvas (Anchored to Right Half with Smooth Left Mask) */}
+      <div className="pointer-events-none absolute -top-8 right-0 -z-10 w-full lg:w-[54%] xl:w-[50%] h-[480px] sm:h-[600px] lg:h-[700px] opacity-100 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,transparent_8%,black_36%,black_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,transparent_8%,black_36%,black_100%)]">
         <StripeWaveCanvas />
       </div>
 
-      {/* Stripe Authentic Ambient Radial Glow Aura */}
-      <div className="pointer-events-none absolute -top-24 right-0 -z-20 h-[550px] w-[550px] rounded-full bg-gradient-to-br from-[#533AFD]/15 via-[#FF7A59]/10 to-transparent blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 -left-20 -z-20 h-[380px] w-[380px] rounded-full bg-gradient-to-tr from-[#FFE0EF]/30 via-[#00D924]/10 to-transparent blur-3xl" />
+      {/* Stripe Authentic Ambient Radial Glow Aura (Subtle Blurple & Electric Cyan, Zero Muddy Cast) */}
+      <div className="pointer-events-none absolute -top-24 right-0 -z-20 h-[550px] w-[550px] rounded-full bg-gradient-to-br from-[#533AFD]/15 via-[#00D4FF]/10 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 -left-20 -z-20 h-[380px] w-[380px] rounded-full bg-gradient-to-tr from-[#533AFD]/8 via-[#7A68FF]/6 to-transparent blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Two-Tone Typography, Value Prop & Direct Action Triggers */}
+          {/* Left Column: Two-Tone Typography, Value Prop & Direct Action Triggers (100% High-Contrast Clean Background) */}
           <div className="lg:col-span-7 space-y-6">
             {/* Live Telemetry Eyebrow */}
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/90 px-3 py-1 text-xs font-mono text-[var(--color-text-secondary)] shadow-2xs backdrop-blur-sm">
